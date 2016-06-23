@@ -1,0 +1,44 @@
+<div ng-controller="PlayersController">
+
+  <div class="container">
+    <h3>New Player</h3>
+      <div class="row">
+        <br>
+        <br>
+        <form name='playerForm'>
+          <div class="form-group">
+             <label for="first_name">Name:</label>
+             <input type="text" class="form-control" name="name" ng-model='newPlayer.name' ng-minlength='4' required>
+          </div>
+           <button ng-click='addPlayer()'>Add Player</button>
+        </form>
+      </div>
+      <div ng-messages='playerForm.name.$error'>
+        <p ng-message = "minlength">
+          The player name is too short.
+        </p>
+        <p ng-message = "required">
+          The player name is required.
+        </p>
+      </div>
+      <div class="row table">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="player in players track by $index | filter: filter_name">
+              <td>{{ player.name }}</td>
+              <td><button ng-click='removePlayer(player)'>Remove Player</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+
+
+</div>
